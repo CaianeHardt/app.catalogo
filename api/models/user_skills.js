@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User_skills.init({
-    level: DataTypes.INTEGER,
     user_id: DataTypes.INTEGER,
     skill_id: DataTypes.INTEGER
   }, {
