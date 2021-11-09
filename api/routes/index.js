@@ -1,9 +1,13 @@
+const express = require ('express')
 const bodyParser = require('body-parser')
 const users = require('./usersRoute')
 const abilities = require('./abilitiesRoute')
 const skills = require('./skillsRoute')
 const user_abilities = require('./user_abilitiesRoute')
 const user_skills = require('./user_skillsRoute')
+// const authentication_strategies = require ('./authentication_strategies')
+
+
 
 module.exports = app => {
     app.use(bodyParser.json())

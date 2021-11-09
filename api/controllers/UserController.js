@@ -1,16 +1,34 @@
-const database = require('../models')
+const database = require('../models');
 const bcrypt = require('bcrypt');
+const { InvalidArgumentError, InternalServerError } = require('../strategy/error');
+const validation = require('../strategy/validations');
+const jwt = require('jsonwebtoken');
 
+
+function createTokenJWT(Users) {
+  const payload = {
+    id: Users
+  };
+
+  const token = jwt.sign(payload, process.env.CHAVE_JWT);
+  return token;
+};
 
 class UserController {
 
-  static async getAllUsers(req, res){
-  try {
-    const allUsers = await database.Users.findAll()
-    return res.status(200).json(allUsers)  
-  } catch (error) {
-    return res.status(500).json(error.message)
+  static async Userslogin(req, res) {
+    const token = createTokenJWT(req.users);
+    res.set('Authorization', token);
+    return res.status(204).send();
   }
+
+  static async getAllUsers(req, res){
+    try {
+      const allUsers = await database.Users.findAll()
+      return res.status(200).json(allUsers)  
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
   }
 
   static async getAUser(req, res) {
@@ -69,6 +87,7 @@ class UserController {
     const custoHash = 12;
     return bcrypt.hash(password, custoHash);
     }
-    }
+  }
   
-  module.exports = UserController
+
+module.exports = UserController
