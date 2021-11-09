@@ -1,10 +1,12 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-
-const Users = require('../models/users')
+const BearerStrategy = require('passport-http-bearer').Strategy;
+const Users = require('../models/users');
 const { InvalidArgumentError } = require('./error');
 
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 
 function verifyUser(Users) {
   if(!Users) {
@@ -38,5 +40,22 @@ passport.use(
           done(erro);
         }
       }
+
+passport.use(
+  new BearerStrategy(
+    async (token, done) => {
+      try {
+        const payload = jwt.verify(token, process.env.CHAVE_JWT);
+      const users = await Users.getAUser(payload.id);
+      done(null,users);
+
+      } catch (error) {
+        done(error);
+      }
+      
+    }
+  )
+)
+
 
 module.exports = authentication_strategies
