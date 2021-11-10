@@ -4,6 +4,10 @@ const { InvalidArgumentError, InternalServerError } = require('../strategy/error
 const validation = require('../strategy/validations');
 const jwt = require('jsonwebtoken');
 const validations = require('../strategy/validations');
+const campoStringNaoNulo = require('../strategy/validations')
+
+const BearerStrategy = require('passport-http-bearer').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 
 
 function createTokenJWT(Users) {
@@ -26,7 +30,22 @@ class UserController {
     return Buffer.from(password).toString('base64');
   }
 
-  static async Userslogin(req, res) {
+
+  static async userslogin(req, res) {
+    console.log(req.body);
+    const confirmPassword = (Buffer.from((req.body.password.toString()).toString('base64')).toString())
+    // console.log(password)
+    const aUser = await database.Users.findOne( { 
+      where: { 
+        email: req.body.email
+      }
+    })
+    // console.log(body.email)
+    
+    if (aUser == undefined || aUser.password != confirmPassword) {
+      return res.status(500).json('Email ou senha inválidos!');
+    }
+    
     const token = createTokenJWT(req.users);
     res.set('Authorization', token);
     return res.status(204).send();
@@ -59,8 +78,7 @@ class UserController {
     const newUser = req.body
     try {
       newUser.password = (await UserController.addPassword(newUser.password)).toString()
-      console.log(newUser.password);
-
+      
       const newUserCreated = await database.Users.create(newUser)
       newUserCreated.password = null;
       return res.status(200).json(newUserCreated)
@@ -91,7 +109,6 @@ class UserController {
       return res.status(500).json(error.message)
     }
   }
-
 }
 
 module.exports = UserController

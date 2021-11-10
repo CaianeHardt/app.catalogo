@@ -3,6 +3,9 @@
 const {
   Model
 } = require('sequelize');
+// const { addPassword } = require('../controllers/UserController');
+// const validations = require('../strategy/validations');
+
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
 
@@ -22,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Users',
     });
 
+    
     
 
   return Users;}
