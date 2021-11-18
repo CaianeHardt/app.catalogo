@@ -8,15 +8,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  photos = [
-    {
-      url: 'https://mruanova.com/img/1.jpg', description: 'foto1',
-    },
-    {
-      url: 'https://mruanova.com/img/1.jpg', description: 'foto1',
-    }
-  ];
-
   // constructor(http:HttpClient) {
     
   //   http
