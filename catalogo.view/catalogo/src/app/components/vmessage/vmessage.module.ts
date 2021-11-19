@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { VMessageComponents } from "./vmessage.components";
 
-NgModule({
+@NgModule({
     declarations: [VMessageComponents],
     exports: [ VMessageComponents]
 })
