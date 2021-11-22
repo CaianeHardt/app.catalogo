@@ -1,17 +1,7 @@
-// import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
- 
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: '<router-outlet></router-outlet>'
 })
-export class AppComponent {
-  // constructor(http:HttpClient) {
-    
-  //   http
-  //     .get<Object[]>()
-  // }
- 
-}
+export class AppComponent {}
