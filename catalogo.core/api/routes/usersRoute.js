@@ -17,15 +17,6 @@ module.exports = app => {
     app
     .route('/users/login')
     .post(passport.authenticate('local', {session : false }), UserController.login);
-
-//     app
-//     .route('/users/login')
-//     .post(passport.authenticate('bearer', { session : false}), UserController.userslogin);
-
-//     app
-//     .route('/users/;id')
-//     .delete(passport.authenticate('bearer', { session : false}), UserController.deleteUser);
-// }
 }
 
 
