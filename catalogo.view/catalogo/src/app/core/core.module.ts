@@ -7,23 +7,21 @@ import { AuthenticationInterceptor } from './helpers/authentication.interceptor'
 
 @NgModule({
   declarations: [],
-  imports: [
-    BrowserAnimationsModule,
-    HttpClientModule
-  ],
-  exports: [
-    BrowserAnimationsModule,
-    HttpClientModule
-  ]
+  imports: [BrowserAnimationsModule, HttpClientModule],
+  exports: [BrowserAnimationsModule, HttpClientModule],
 })
-export class CoreModule { 
+export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
       providers: [
         AuthService,
-        { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
-      ]
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthenticationInterceptor,
+          multi: true,
+        },
+      ],
     };
   }
 }
