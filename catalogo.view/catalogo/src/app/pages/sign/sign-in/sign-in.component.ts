@@ -29,22 +29,31 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  login(): void {
-    const email = this.loginForm.get('email')?.value;
-    const password = this.loginForm.get('password')?.value;
-    // this.platformDetectorService.isPlatformBrowser() &&
-    // this.usersEmailInput.nativeElement.focus();
+      login(): void {
+          const email = this.loginForm.get('email')?.value;
+          const password = this.loginForm.get('password')?.value;
+          this.platformDetectorService.isPlatformBrowser() &&
+          this.usersEmailInput.nativeElement.focus();
 
-    this.authService.signIn(email, password).subscribe(res => {
-      console.log(res);
-      this.router.navigateByUrl('users/' + email);
-    });
+          // this.authService.signIn(email, password).subscribe(res => {
+          //   console.log(res);
+          //   this.router.navigateByUrl('users/' + email);
+          // })
+    
+          this.authService
+              .signIn(email, password)
+              .subscribe(
+                  () => this.router.navigate(['users/' + email]),
+                  
 
-    // this.authService
-    //     .signIn(email, password)
-    //     .subscribe(
-    //         () => this.router.navigate(['users' + email]),
-    //         // () => this.router.navigateByUrl('users/' + email),
+                  err => {
+                      console.log(err);
+                      this.loginForm.reset();
+                      this.platformDetectorService.isPlatformBrowser() &&
+                          this.usersEmailInput.nativeElement.focus();
+                      alert('Email ou senha inválido')
+                  }
+              )
 
     //         err => {
     //             console.log(err);
