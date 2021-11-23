@@ -10,6 +10,7 @@ const cors = require('cors');
 
 
 module.exports = app => {
+    app.use(cors({origin: '*'}));
     app.use(bodyParser.json())
     app.use(
         users,
@@ -18,8 +19,4 @@ module.exports = app => {
         user_abilities,
         user_skills
         )
-    app.use(cors({
-        origin: '*',
-        methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH', 'OPTIONS']
-    }));
 }
