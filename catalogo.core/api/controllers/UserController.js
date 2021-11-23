@@ -61,11 +61,11 @@ class UserController {
   }
 
   static async getAUser(req, res) {
-    const { id } = req.params
+    const { email } = req.params
     try {
       const aUser = await database.Users.findOne( { 
         where: { 
-          id: Number(id) 
+          email: String(email) 
         }
       })
       return res.status(200).json(aUser)

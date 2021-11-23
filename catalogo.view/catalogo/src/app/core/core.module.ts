@@ -4,11 +4,13 @@ import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthenticationInterceptor } from './helpers/authentication.interceptor';
+import { HeaderComponent } from './headers/header.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [HeaderComponent],
   imports: [BrowserAnimationsModule, HttpClientModule],
-  exports: [BrowserAnimationsModule, HttpClientModule],
+  exports: [BrowserAnimationsModule, HttpClientModule, HeaderComponent],
+
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders {
@@ -16,10 +18,12 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         AuthService,
+        
         {
           provide: HTTP_INTERCEPTORS,
           useClass: AuthenticationInterceptor,
           multi: true,
+          
         },
       ],
     };
