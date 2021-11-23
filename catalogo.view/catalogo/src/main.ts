@@ -8,5 +8,6 @@ import { environment } from './environments/environment';
 //   enableProdMode();
 // }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
   .catch(err => console.error(err));

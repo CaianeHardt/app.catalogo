@@ -6,17 +6,17 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./pages/sign/sign.module').then((m) => m.SignModule),
+      import('./pages/sign/sign.module').then(m => m.SignModule),
   },
   {
     path: 'users',
     loadChildren: () =>
-      import('./pages/users/users.module').then((m) => m.UsersModule),
+      import('./pages/users/users.module').then(m => m.UsersModule),
   },
-  { 
-    path: '**', 
-    component: NotFoundComponent 
-}  
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({

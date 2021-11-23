@@ -7,14 +7,12 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignRoutingModule } from './sign-routing.module';
 
 @NgModule({
-  declarations: [
-    SignInComponent
-  ],
+  declarations: [SignInComponent],
   imports: [
     CommonModule,
     SignRoutingModule,
     ReactiveFormsModule,
     VMessageModule,
-  ]
+  ],
 })
-export class SignModule { }
+export class SignModule {}
