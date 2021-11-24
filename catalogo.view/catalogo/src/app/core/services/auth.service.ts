@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { pipe, tap } from 'rxjs';
-
+import { tap } from 'rxjs';
 import { WEB_API } from '../../app.api';
-import { TokenService } from '../token/token.service';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',

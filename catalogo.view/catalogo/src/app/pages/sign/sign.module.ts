@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { VMessageModule } from 'src/app/components/vmessage/vmessage.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignRoutingModule } from './sign-routing.module';
 
@@ -12,7 +12,7 @@ import { SignRoutingModule } from './sign-routing.module';
     CommonModule,
     SignRoutingModule,
     ReactiveFormsModule,
-    VMessageModule,
+    SharedModule
   ],
 })
 export class SignModule {}

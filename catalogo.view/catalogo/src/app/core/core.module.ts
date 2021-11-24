@@ -4,28 +4,28 @@ import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthenticationInterceptor } from './helpers/authentication.interceptor';
-import { HeaderComponent } from './headers/header.component';
+import { PlatformDetectorService } from './services/platform-detector.service';
+import { TokenService } from './services/token.service';
+
+const SERVICES = [AuthService, PlatformDetectorService, TokenService];
+const INTERCEPTORS = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthenticationInterceptor,
+    multi: true,
+  },
+];
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [],
   imports: [BrowserAnimationsModule, HttpClientModule],
-  exports: [BrowserAnimationsModule, HttpClientModule, HeaderComponent],
-
+  exports: [BrowserAnimationsModule, HttpClientModule],
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [
-        AuthService,
-        
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: AuthenticationInterceptor,
-          multi: true,
-          
-        },
-      ],
+      providers: [...SERVICES, ...INTERCEPTORS],
     };
   }
 }

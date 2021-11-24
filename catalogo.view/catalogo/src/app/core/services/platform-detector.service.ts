@@ -9,5 +9,3 @@ export class PlatformDetectorService {
     return isPlatformBrowser(this.platformId);
   }
 }
-
-//se estou no browser ou não
