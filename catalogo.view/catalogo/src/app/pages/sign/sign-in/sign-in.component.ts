@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { PlatformDetectorService } from 'src/app/core/services/platform-detector.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { PlatformDetectorService } from 'src/app/shared/services/platform-detector.service';
 
 @Component({
   selector: 'app-sign-in',
