@@ -1,0 +1,56 @@
+<h4 class="text-center"> Crie sua conta aqui </h4>
+
+<form [formGroup]="signupForm" class="form mt-4">
+    <div class="form-group">
+        <input formControlName="email" class="form-control" placeholder="Email" class="form-control" autofocus >
+        <cat-vmessage 
+            *ngIf="signupForm.get('email')?.errors?.['required']"
+            text="Email is required!">
+        </cat-vmessage>
+
+        <cat-vmessage 
+            *ngIf="signupForm.get('email')?.errors?.['email']"
+            text="invalid email">
+        </cat-vmessage>
+    </div>
+
+    <div class="form-group">
+        <input formControlName="fullName" class="form-control" placeholder="Nome completo" class="form-control">
+        <cat-vmessage 
+            *ngIf="signupForm.get('fullName')?.errors?.['required']"
+            text=" Full name is required!">
+        </cat-vmessage>
+        
+        <cat-vmessage 
+            *ngIf="signupForm.get('fullName')?.errors?.['minLength']"
+            text="minimun length is 2">
+        </cat-vmessage>
+
+        <cat-vmessage 
+            *ngIf="signupForm.get('fullName')?.errors?.['maxLength']"
+            text="maximum length is 40">
+        </cat-vmessage>
+    </div>
+
+    <div class="form-group">
+        <input formControlName="password" class="form-control" type="password" placeholder="Senha" class="form-control">
+        <cat-vmessage 
+            *ngIf="signupForm.get('password')?.errors?.['required']"
+            text=" Full name is required!">
+        </cat-vmessage>
+        
+        <cat-vmessage 
+            *ngIf="signupForm.get('password')?.errors?.['minLength']"
+            text="minimun length is 6">
+        </cat-vmessage>
+
+        <cat-vmessage 
+            *ngIf="signupForm.get('password')?.errors?.['maxLength']"
+            text="maximum length is 14">
+        </cat-vmessage>
+    </div>
+
+    <button class="btn btn-primary btn-block">Cadastre-se</button>
+
+    <p>Já tem uma conta?<a [routerLink]="['']">Entre aqui!</a></p>
+</form>
