@@ -7,6 +7,6 @@ const port = 3006
 
 routes(app)
 
-app.listen(port, () => console.log(`servidor está rodando na porta ${port}`))
+ten(port, () => console.log(`servidor está rodando na porta ${port}`))
 
 module.exports = app
